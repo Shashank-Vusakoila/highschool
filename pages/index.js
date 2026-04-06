@@ -107,6 +107,12 @@ export default function Home() {
   ];
   const testimonialCount = testimonials.length;
 
+  const programmeMetrics = [
+    { label: 'Established', value: '2012 with a community-first vision' },
+    { label: 'Learning Path', value: 'Nursery to 10th with structured progression' },
+    { label: 'Parent Support', value: 'Simple admissions and direct guidance' },
+  ];
+
   const learningPillars = [
     {
       no: '01',
@@ -161,6 +167,24 @@ export default function Home() {
     { title: 'Campus Life', img: '/images/campus-life.jpg' },
     { title: 'Student Energy', img: '/images/student-energy.jpg' },
     { title: 'Community Feel', img: '/images/community-feel.jpg' },
+  ];
+
+  const parentPromises = [
+    {
+      icon: '01',
+      title: 'Children Feel Known Here',
+      desc: 'Families want a school where children are seen, guided, and encouraged personally instead of getting lost in the crowd.',
+    },
+    {
+      icon: '02',
+      title: 'Learning Feels Practical',
+      desc: 'The focus moves beyond memorisation toward understanding, expression, participation, and confidence in the classroom.',
+    },
+    {
+      icon: '03',
+      title: 'Parents Feel Reassured',
+      desc: 'From admissions support to transport guidance and campus visits, the parent journey feels approachable and clear.',
+    },
   ];
 
   const resetTimer = (n) => {
@@ -310,16 +334,16 @@ export default function Home() {
             <h1 className="slide-h">{activeSlide.h1}<em>{activeSlide.em}</em></h1>
             <p className="slide-p">{activeSlide.p}</p>
             <div className="hero-trust-row">
-              <div className="hero-trust-pill">Structured Learning</div>
-              <div className="hero-trust-pill">Safe Campus Culture</div>
-              <div className="hero-trust-pill">Admissions Open</div>
+              <div className="hero-trust-pill">Established 2012</div>
+              <div className="hero-trust-pill">600+ Students</div>
+              <div className="hero-trust-pill">Bus Routes Available</div>
             </div>
             <div className="hero-btns">
               <a href={activeSlide.btn1.href} className="btn-solid">{activeSlide.btn1.label}</a>
               <a href={activeSlide.btn2.href} className="btn-ghost">{activeSlide.btn2.label}</a>
             </div>
             <div className="hero-caption">
-              Building strong foundations in academics, confidence, discipline, and character from Nursery to 10th Class.
+              A values-based school journey built around strong teaching, personal attention, and steady growth from Nursery to 10th Class.
             </div>
           </div>
           <aside className="hero-aside sr d2">
@@ -376,24 +400,51 @@ export default function Home() {
       <div className="news-ribbon" aria-label="School highlights">
         <div className="news-ribbon-track">
           {[
-            'Admissions Open from Nursery to 10th Class',
+            'Admissions open for Nursery to 10th Class',
+            'Campus visits welcome for parents',
             'Safe campus and dedicated teachers',
-            'Activity-based learning environment',
-            'Transport available across nearby areas',
-            'Sports, arts, discipline, and academic growth',
-            'Campus visits and parent enquiries welcome',
+            'Bus routes across nearby areas',
+            'Classroom learning with sports and arts',
+            'WhatsApp enquiries available directly',
           ].concat([
-            'Admissions Open from Nursery to 10th Class',
+            'Admissions open for Nursery to 10th Class',
+            'Campus visits welcome for parents',
             'Safe campus and dedicated teachers',
-            'Activity-based learning environment',
-            'Transport available across nearby areas',
-            'Sports, arts, discipline, and academic growth',
-            'Campus visits and parent enquiries welcome',
+            'Bus routes across nearby areas',
+            'Classroom learning with sports and arts',
+            'WhatsApp enquiries available directly',
           ]).map((item, i) => (
             <span key={i} className="news-ribbon-item">{item}</span>
           ))}
         </div>
       </div>
+
+      <section className="section parent-promise-sec">
+        <div className="wrap">
+          <div className="parent-promise-wrap">
+            <div className="parent-promise-copy sr">
+              <div className="eyebrow">What Parents Need Most</div>
+              <h2 className="sec-title" style={{ maxWidth: '620px', marginBottom: '14px' }}>
+                A School That Feels
+                <br />
+                <em>Trustworthy, Warm, and Well-Structured</em>
+              </h2>
+              <p className="sec-body" style={{ maxWidth: '620px' }}>
+                Parents look for more than a good campus. They want a school that feels safe, caring, well-run, and genuinely invested in their child. Nalanda leads with those priorities through personal attention, meaningful learning, and an admissions process that feels easy to begin.
+              </p>
+            </div>
+            <div className="parent-promise-grid">
+              {parentPromises.map((promise, i) => (
+                <article key={promise.title} className={`promise-card sr d${i + 1}`}>
+                  <div className="promise-icon">{promise.icon}</div>
+                  <h3 className="promise-title">{promise.title}</h3>
+                  <p className="promise-desc">{promise.desc}</p>
+                </article>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
 
       {/* ABOUT */}
       <section className="section" id="about">
@@ -453,6 +504,14 @@ export default function Home() {
               <p className="sec-body" style={{ maxWidth: '620px' }}>
                 Beyond academics, Nalanda builds curiosity, confidence, discipline, communication, and a strong sense of purpose through a more complete school experience.
               </p>
+            </div>
+            <div className="programme-hero-metrics sr d1">
+              {programmeMetrics.map((metric) => (
+                <div key={metric.label} className="programme-metric-card">
+                  <span>{metric.label}</span>
+                  <strong>{metric.value}</strong>
+                </div>
+              ))}
             </div>
           </div>
           <div className="programme-showcase">
@@ -536,20 +595,6 @@ export default function Home() {
                 <span className="feature-ref-tag">All-Round Growth</span>
               </div>
             </div>
-            <div className="feature-ref-panel sr d1">
-              <div className="feature-ref-stat">
-                <strong>2012</strong>
-                <span>Established</span>
-              </div>
-              <div className="feature-ref-stat">
-                <strong>600+</strong>
-                <span>Students</span>
-              </div>
-              <div className="feature-ref-stat">
-                <strong>I-X</strong>
-                <span>Classes</span>
-              </div>
-            </div>
           </div>
           <div className="pillar-grid">
             {learningPillars.map((pillar, i) => (
@@ -587,9 +632,9 @@ export default function Home() {
             {founders.map((founder, i) => (
               <article key={founder.name} className={`founder-card sr d${i + 1}`}>
                 <div className="founder-avatar">{founder.initials}</div>
+                <div className="founder-role-tag">{founder.role}</div>
                 <h3 className="founder-name">{founder.name}</h3>
                 <div className="founder-divider" />
-                <p className="journey-no" style={{ marginBottom: '12px' }}>{founder.role}</p>
                 <p className="journey-desc" style={{ maxWidth: '420px', margin: '0 auto' }}>{founder.desc}</p>
               </article>
             ))}
@@ -740,6 +785,11 @@ export default function Home() {
               <a href={whatsappLink} target="_blank" rel="noreferrer" className="btn-green">WhatsApp Now</a>
               <a href={mapsLink} target="_blank" rel="noreferrer" className="btn-green-out">Open School Location</a>
             </div>
+            <div className="admit-proof-list">
+              <div className="admit-proof-item">Campus visits available for parents</div>
+              <div className="admit-proof-item">Direct WhatsApp admission support</div>
+              <div className="admit-proof-item">Transport guidance for nearby areas</div>
+            </div>
             <div style={{ marginTop: '32px', padding: '22px', background: 'var(--panel-strong)', border: '1px solid rgba(255,255,255,.7)', borderRadius: '20px', boxShadow: 'var(--shadow-sm)', backdropFilter: 'var(--glass)' }}>
               <p style={{ fontSize: '.78rem', fontWeight: 700, color: 'var(--navy)', marginBottom: '10px', letterSpacing: '.08em', textTransform: 'uppercase' }}>School Office</p>
               <p style={{ fontSize: '.8rem', color: 'var(--muted)', lineHeight: 1.7 }}>
@@ -760,8 +810,10 @@ export default function Home() {
               <input type="tel" placeholder="Phone Number" value={enquiry.phone} onChange={handleEnquiryChange('phone')} />
               <select value={enquiry.classApplying} onChange={handleEnquiryChange('classApplying')}>
                 <option value="">Class Applying For</option>
-                {['I','II','III','IV','V','VI','VII','VIII','IX','X'].map(c => (
-                  <option key={c} value={`Class ${c}`}>Class {c}</option>
+                {['Nursery', 'LKG', 'UKG', 'I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X'].map(c => (
+                  <option key={c} value={['Nursery', 'LKG', 'UKG'].includes(c) ? c : `Class ${c}`}>
+                    {['Nursery', 'LKG', 'UKG'].includes(c) ? c : `Class ${c}`}
+                  </option>
                 ))}
               </select>
               <input type="text" placeholder="Village / Town" value={enquiry.village} onChange={handleEnquiryChange('village')} />
@@ -787,11 +839,6 @@ export default function Home() {
             </div>
             <p className="fl-desc">Inspired by the ancient seat of learning, Nalanda High School is dedicated to providing quality, inclusive education to every child - building futures rooted in values, knowledge, and confidence.</p>
             <div className="fl-affil">Founded by <strong>Ilapuram Kiran Kumar Reddy &amp; Bhasker Rao Gupta</strong></div>
-            <div className="fl-socials">
-              <a className="fl-soc" href="#">f</a>
-              <a className="fl-soc" href="#">in</a>
-              <a className="fl-soc" href="#">yt</a>
-            </div>
           </div>
 
           <div className="fc">
