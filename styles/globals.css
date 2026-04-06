@@ -2371,7 +2371,9 @@ footer {
   .map-frame { height: 290px; }
   .loc-item { gap: 12px; }
   .founder-card { padding: 32px 22px; }
-  .footer-bot { padding-bottom: 92px; }
+  html { scroll-padding-bottom: calc(112px + env(safe-area-inset-bottom, 0px)); }
+  body { padding-bottom: calc(112px + env(safe-area-inset-bottom, 0px)); }
+  .footer-bot { padding-bottom: calc(92px + env(safe-area-inset-bottom, 0px)); }
   .mobile-cta-bar {
     display: grid;
     grid-template-columns: 1.35fr 1fr;
@@ -2379,7 +2381,7 @@ footer {
     position: fixed;
     left: 14px;
     right: 14px;
-    bottom: 12px;
+    bottom: calc(12px + env(safe-area-inset-bottom, 0px));
     z-index: 400;
     padding: 10px;
     border-radius: 20px;
@@ -2390,7 +2392,7 @@ footer {
   }
   .mobile-cta-primary,
   .mobile-cta-secondary {
-    min-height: 48px;
+    min-height: 46px;
     border-radius: 999px;
     display: inline-flex;
     align-items: center;
