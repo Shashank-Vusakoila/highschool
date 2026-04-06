@@ -134,18 +134,18 @@ export default function Home() {
     },
   ];
 
-  const parentPromises = [
+  const founders = [
     {
-      title: 'Personal Attention',
-      desc: 'Children are guided closely so parents feel their child is known, encouraged, and supported every day.',
+      name: 'Ilapuram Kiran Kumar Reddy',
+      initials: 'IK',
+      role: 'Founder',
+      desc: 'Committed to building a school environment where discipline, care, and quality education grow together.',
     },
     {
-      title: 'Safe, Disciplined Environment',
-      desc: 'A calm and structured campus culture helps families trust the school experience from the very first visit.',
-    },
-    {
-      title: 'Balanced Growth',
-      desc: 'Academics, communication, confidence, sports, and values all move forward together instead of in isolation.',
+      name: 'Bhasker Rao Gupta',
+      initials: 'BG',
+      role: 'Founder',
+      desc: 'Focused on creating a strong educational foundation that supports every child with confidence and opportunity.',
     },
   ];
 
@@ -366,7 +366,7 @@ export default function Home() {
       {/* STATS STRIP */}
       <div className="stats-strip">
         <div className="stats-row">
-          <div className="st sr"><div className="st-num">500<span>+</span></div><div className="st-lbl">Students Enrolled</div></div>
+          <div className="st sr"><div className="st-num">600<span>+</span></div><div className="st-lbl">Students Enrolled</div></div>
           <div className="st sr d1"><div className="st-num">50<span>+</span></div><div className="st-lbl">Dedicated Educators</div></div>
           <div className="st sr d2"><div className="st-num">10</div><div className="st-lbl">Classes (I to X)</div></div>
           <div className="st sr d3"><div className="st-num">100<span>%</span></div><div className="st-lbl">Holistic Education</div></div>
@@ -403,7 +403,7 @@ export default function Home() {
               <img src="/images/about.jpg" alt="Nalanda High School campus" style={{ width: '100%', height: '440px', objectFit: 'cover' }} />
               <div className="about-badge">
                 <div className="ab-tag">Nalanda High School</div>
-                <div className="ab-val">NHS - Est. 2010</div>
+                <div className="ab-val">NHS - Est. 2012</div>
               </div>
             </div>
             <div className="sr d2">
@@ -531,38 +531,39 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="section parent-promise-sec">
-        <div className="wrap parent-promise-wrap">
-          <div className="parent-promise-copy sr">
-            <div className="eyebrow">For New Parents</div>
-            <h2 className="sec-title">A School Experience That Feels<br /><em>Reassuring and Aspirational</em></h2>
-            <p className="sec-body">Parents are not only looking for marks. They want safety, attention, communication, confidence-building, and a place where their child will genuinely grow. Nalanda is positioned to offer exactly that story.</p>
-            <a href="#contact" className="readmore">Start Your Enquiry</a>
-          </div>
-          <div className="parent-promise-grid">
-            {parentPromises.map((item, i) => (
-              <article key={item.title} className={`promise-card sr d${i + 1}`}>
-                <div className="promise-icon">0{i + 1}</div>
-                <h3 className="promise-title">{item.title}</h3>
-                <p className="promise-desc">{item.desc}</p>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
-
       <section className="section feature-ref-sec" id="approach">
         <div className="wrap">
           <div className="feature-ref-head sr">
-            <div className="eyebrow eyebrow-c">Why Families Choose Nalanda</div>
-            <h2 className="sec-title" style={{ textAlign: 'center', maxWidth: '720px', margin: '0 auto 14px' }}>
-              A More Modern Learning Experience
-              <br />
-              with <em>Strong Foundations</em>
-            </h2>
-            <p className="sec-body" style={{ margin: '0 auto', textAlign: 'center', maxWidth: '700px' }}>
-              Nalanda combines strong academics with confidence-building, discipline, creativity, and personal attention so students grow in every direction.
-            </p>
+            <div className="feature-ref-copy">
+              <div className="eyebrow">Why Families Choose Nalanda</div>
+              <h2 className="sec-title" style={{ maxWidth: '620px', marginBottom: '14px' }}>
+                A School Journey Built on
+                <br />
+                <em>Trust, Care, and Strong Foundations</em>
+              </h2>
+              <p className="sec-body" style={{ maxWidth: '620px' }}>
+                Families choose Nalanda because children are guided with personal attention, strong teaching, safe campus culture, and opportunities that build confidence inside and outside the classroom.
+              </p>
+              <div className="feature-ref-tags">
+                <span className="feature-ref-tag">Personal Attention</span>
+                <span className="feature-ref-tag">Safe Campus</span>
+                <span className="feature-ref-tag">All-Round Growth</span>
+              </div>
+            </div>
+            <div className="feature-ref-panel sr d1">
+              <div className="feature-ref-stat">
+                <strong>2012</strong>
+                <span>Established</span>
+              </div>
+              <div className="feature-ref-stat">
+                <strong>600+</strong>
+                <span>Students</span>
+              </div>
+              <div className="feature-ref-stat">
+                <strong>I-X</strong>
+                <span>Classes</span>
+              </div>
+            </div>
           </div>
           <div className="pillar-grid">
             {learningPillars.map((pillar, i) => (
@@ -577,6 +578,33 @@ export default function Home() {
                     <span key={point} className="pillar-point">{point}</span>
                   ))}
                 </div>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="founders-sec">
+        <div className="wrap">
+          <div className="founders-hdr sr">
+            <div className="eyebrow eyebrow-c">Leadership</div>
+            <h2 className="sec-title" style={{ textAlign: 'center', maxWidth: '700px', margin: '0 auto 14px' }}>
+              The Founders Behind
+              <br />
+              <em>Nalanda High School</em>
+            </h2>
+            <p className="sec-body" style={{ margin: '0 auto', textAlign: 'center', maxWidth: '700px' }}>
+              Nalanda High School is guided by founders who believe in disciplined learning, personal care, and meaningful educational growth for every child.
+            </p>
+          </div>
+          <div className="founders-grid">
+            {founders.map((founder, i) => (
+              <article key={founder.name} className={`founder-card sr d${i + 1}`}>
+                <div className="founder-avatar">{founder.initials}</div>
+                <h3 className="founder-name">{founder.name}</h3>
+                <div className="founder-divider" />
+                <p className="journey-no" style={{ marginBottom: '12px' }}>{founder.role}</p>
+                <p className="journey-desc" style={{ maxWidth: '420px', margin: '0 auto' }}>{founder.desc}</p>
               </article>
             ))}
           </div>
@@ -772,7 +800,7 @@ export default function Home() {
               </div>
             </div>
             <p className="fl-desc">Inspired by the ancient seat of learning, Nalanda High School is dedicated to providing quality, inclusive education to every child - building futures rooted in values, knowledge, and confidence.</p>
-            <div className="fl-affil">Co-founded by <strong>Ilapuram Namratha Reddy &amp; Ilapuram Kiran Reddy</strong></div>
+            <div className="fl-affil">Founded by <strong>Ilapuram Kiran Kumar Reddy &amp; Bhasker Rao Gupta</strong></div>
             <div className="fl-socials">
               <a className="fl-soc" href="#">f</a>
               <a className="fl-soc" href="#">in</a>
@@ -812,7 +840,7 @@ export default function Home() {
         </div>
         <div className="footer-bot">
           <p>Copyright {currentYear} Nalanda High School. All rights reserved.</p>
-          <p>500+ Students - Classes I to X - Andhra Pradesh, India</p>
+          <p>600+ Students - Classes I to X - Andhra Pradesh, India</p>
         </div>
       </footer>
 
