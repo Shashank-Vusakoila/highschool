@@ -227,7 +227,7 @@ export default function Home() {
     <>
       <Head>
         <title>Nalanda High School | Quality Education in Andhra Pradesh</title>
-        <meta name="description" content="Nalanda High School offers quality education, caring teachers, a safe campus, and all-round development for children from Classes I to X." />
+        <meta name="description" content="Nalanda High School offers quality education, caring teachers, a safe campus, and all-round development for children from Nursery to 10th Class." />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="theme-color" content="#0d2340" />
         <meta property="og:title" content="Nalanda High School" />
@@ -319,7 +319,7 @@ export default function Home() {
               <a href={activeSlide.btn2.href} className="btn-ghost">{activeSlide.btn2.label}</a>
             </div>
             <div className="hero-caption">
-              Building strong foundations in academics, confidence, discipline, and character from Classes I to X.
+              Building strong foundations in academics, confidence, discipline, and character from Nursery to 10th Class.
             </div>
           </div>
           <aside className="hero-aside sr d2">
@@ -343,7 +343,7 @@ export default function Home() {
                   <img src="/images/hero3.jpg" alt="Nalanda students" />
                   <div>
                     <span>Admissions Open</span>
-                    <strong>Classes I to X</strong>
+                    <strong>Nursery to 10th Class</strong>
                   </div>
                 </div>
               </div>
@@ -368,7 +368,7 @@ export default function Home() {
         <div className="stats-row">
           <div className="st sr"><div className="st-num">600<span>+</span></div><div className="st-lbl">Students Enrolled</div></div>
           <div className="st sr d1"><div className="st-num">50<span>+</span></div><div className="st-lbl">Dedicated Educators</div></div>
-          <div className="st sr d2"><div className="st-num">10</div><div className="st-lbl">Classes (I to X)</div></div>
+          <div className="st sr d2"><div className="st-num">10</div><div className="st-lbl">Classes (Nursery to 10th)</div></div>
           <div className="st sr d3"><div className="st-num">100<span>%</span></div><div className="st-lbl">Holistic Education</div></div>
         </div>
       </div>
@@ -376,14 +376,14 @@ export default function Home() {
       <div className="news-ribbon" aria-label="School highlights">
         <div className="news-ribbon-track">
           {[
-            'Admissions Open for Classes I to X',
+            'Admissions Open from Nursery to 10th Class',
             'Safe campus and dedicated teachers',
             'Activity-based learning environment',
             'Transport available across nearby areas',
             'Sports, arts, discipline, and academic growth',
             'Campus visits and parent enquiries welcome',
           ].concat([
-            'Admissions Open for Classes I to X',
+            'Admissions Open from Nursery to 10th Class',
             'Safe campus and dedicated teachers',
             'Activity-based learning environment',
             'Transport available across nearby areas',
@@ -409,7 +409,7 @@ export default function Home() {
             <div className="sr d2">
               <div className="eyebrow">About Nalanda High School</div>
               <h2 className="sec-title">Where Every Child Gets<br />a Chance to <em>Shine</em></h2>
-              <p className="sec-body">Nalanda High School is inspired by the legacy of ancient Nalanda - the world&apos;s first great university - and carries that spirit forward by providing quality, values-based education to students from Classes I to X. Rooted in community and dedicated to excellence, we build not just academic skills but confident, compassionate human beings.</p>
+              <p className="sec-body">Nalanda High School is inspired by the legacy of ancient Nalanda - the world&apos;s first great university - and carries that spirit forward by providing quality, values-based education to students from Nursery to 10th Class. Rooted in community and dedicated to excellence, we build not just academic skills but confident, compassionate human beings.</p>
               <div className="features">
                 <div className="feat">
                   <div className="feat-ico">01</div>
@@ -465,7 +465,7 @@ export default function Home() {
               </div>
               <div className="programme-metric-card">
                 <span>School Journey</span>
-                <strong>Classes I to X</strong>
+                <strong>Nursery to 10th Class</strong>
               </div>
             </div>
           </div>
@@ -749,7 +749,7 @@ export default function Home() {
           <div className="admit-txt sr">
             <div className="eyebrow">Admissions Open</div>
             <h2 className="sec-title">Give Your Child the<br /><em>Education They Deserve</em></h2>
-            <p className="sec-body">Nalanda High School welcomes all children from Classes I to X. Our doors are open to every family in the community. Enrol today and take the first step toward a brighter future.</p>
+            <p className="sec-body">Nalanda High School welcomes all children from Nursery to 10th Class. Our doors are open to every family in the community. Enrol today and take the first step toward a brighter future.</p>
             <div className="admit-btns" style={{ marginTop: '28px' }}>
               <a href={whatsappLink} target="_blank" rel="noreferrer" className="btn-green">WhatsApp Now</a>
               <a href={mapsLink} target="_blank" rel="noreferrer" className="btn-green-out">Open School Location</a>
@@ -830,7 +830,7 @@ export default function Home() {
 
           <div className="fc">
             <h5>Classes Offered</h5>
-            {['Class I - II (Primary)', 'Class III - V (Upper Primary)', 'Class VI - VIII (Middle)', 'Class IX - X (Secondary)'].map(c => (
+            {['Nursery - UKG (Foundational)', 'Class I - V (Primary)', 'Class VI - VIII (Middle)', 'Class IX - X (Secondary)'].map(c => (
               <a key={c} href="#contact">{c}</a>
             ))}
             <h5 style={{ marginTop: '20px' }}>Transport</h5>
@@ -840,7 +840,7 @@ export default function Home() {
         </div>
         <div className="footer-bot">
           <p>Copyright {currentYear} Nalanda High School. All rights reserved.</p>
-          <p>600+ Students - Classes I to X - Andhra Pradesh, India</p>
+          <p>600+ Students - Nursery to 10th Class - Andhra Pradesh, India</p>
         </div>
       </footer>
 
