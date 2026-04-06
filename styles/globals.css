@@ -6,8 +6,8 @@ body {
   font-family: 'Manrope', sans-serif;
   color: var(--text);
   background:
-    radial-gradient(circle at top left, rgba(46, 163, 242, 0.18), transparent 24%),
-    radial-gradient(circle at top right, rgba(21, 101, 192, 0.14), transparent 28%),
+    radial-gradient(circle at top left, rgba(46, 163, 242, 0.1), transparent 24%),
+    radial-gradient(circle at top right, rgba(21, 101, 192, 0.08), transparent 28%),
     linear-gradient(180deg, #f4f9ff 0%, #e9f2ff 100%);
   overflow-x: hidden;
 }
@@ -246,7 +246,7 @@ ul { list-style: none; }
   position: absolute;
   inset: auto 0 0 0;
   height: 180px;
-  background: linear-gradient(180deg, transparent, rgba(7, 19, 38, 0.38));
+  background: linear-gradient(180deg, transparent, rgba(7, 19, 38, 0.24));
   z-index: 1;
   pointer-events: none;
 }
@@ -254,7 +254,7 @@ ul { list-style: none; }
   position: absolute;
   border-radius: 999px;
   filter: blur(14px);
-  opacity: .55;
+  opacity: .32;
   pointer-events: none;
   z-index: 1;
   animation: drift 8s ease-in-out infinite alternate;
@@ -264,14 +264,14 @@ ul { list-style: none; }
   height: 320px;
   top: 80px;
   right: 8%;
-  background: radial-gradient(circle, rgba(46, 163, 242, 0.34), rgba(46, 163, 242, 0));
+  background: radial-gradient(circle, rgba(46, 163, 242, 0.2), rgba(46, 163, 242, 0));
 }
 .hero-ambient-b {
   width: 240px;
   height: 240px;
   bottom: 80px;
   right: 28%;
-  background: radial-gradient(circle, rgba(21, 101, 192, 0.42), rgba(21, 101, 192, 0));
+  background: radial-gradient(circle, rgba(21, 101, 192, 0.24), rgba(21, 101, 192, 0));
   animation-duration: 11s;
 }
 @keyframes drift {
@@ -302,9 +302,9 @@ ul { list-style: none; }
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(112deg, rgba(13, 31, 45, 0.94) 0%, rgba(13, 31, 45, 0.82) 40%, rgba(15, 76, 129, 0.38) 70%, rgba(46, 163, 242, 0.16) 100%),
-    radial-gradient(circle at 78% 20%, rgba(134, 239, 172, 0.32), transparent 24%),
-    linear-gradient(180deg, rgba(5, 15, 29, 0.18), rgba(5, 15, 29, 0.36));
+    linear-gradient(112deg, rgba(13, 31, 45, 0.76) 0%, rgba(13, 31, 45, 0.62) 40%, rgba(15, 76, 129, 0.24) 70%, rgba(46, 163, 242, 0.08) 100%),
+    radial-gradient(circle at 78% 20%, rgba(134, 239, 172, 0.18), transparent 24%),
+    linear-gradient(180deg, rgba(5, 15, 29, 0.08), rgba(5, 15, 29, 0.2));
 }
 .slide-body {
   position: relative;
@@ -540,8 +540,8 @@ ul { list-style: none; }
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.08), transparent 28%),
-    linear-gradient(180deg, rgba(8, 20, 38, 0) 38%, rgba(8, 20, 38, 0.6) 100%);
+    linear-gradient(180deg, rgba(255, 255, 255, 0.05), transparent 28%),
+    linear-gradient(180deg, rgba(8, 20, 38, 0) 42%, rgba(8, 20, 38, 0.4) 100%);
 }
 .hero-showcase-badge {
   position: absolute;
