@@ -4,6 +4,7 @@ import { useState, useEffect, useRef } from 'react';
 export default function Home() {
   const [slideIndex, setSlideIndex] = useState(0);
   const [testIndex, setTestIndex] = useState(0);
+  const [activeProgramme, setActiveProgramme] = useState(0);
   const [menuOpen, setMenuOpen] = useState(false);
   const [enquiry, setEnquiry] = useState({
     parentName: '',
@@ -48,6 +49,9 @@ export default function Home() {
       btn2: { label: 'Talk to Us', href: '#contact' },
     },
   ];
+  const activeSlide = slides[slideIndex];
+  const slideCount = slides.length;
+  const currentYear = new Date().getFullYear();
 
   const testimonials = [
     {
@@ -67,33 +71,119 @@ export default function Home() {
     },
   ];
 
-  const schoolEvents = [
-    { tag: 'Annual Event', title: 'Nalanda Annual Day - A Celebration of Young Talent', desc: 'Students showcased their talents through dance, drama, music, and speeches at our spectacular Annual Day, celebrating the achievements of every child.', img: 'https://images.unsplash.com/photo-1531482615713-2afd69097998?w=600&q=80', delay: '' },
-    { tag: 'Academics', title: 'Science Fair - Innovations by Young Minds', desc: 'Students showcased self-built models, experiments, and environmental solutions at the school science fair, inspiring curiosity and creativity.', img: 'https://images.unsplash.com/photo-1532094349884-543bc11b234d?auto=format&fit=crop&w=1200&q=80', delay: 'd1' },
-    { tag: 'Sports', title: 'Nalanda Sports Meet - Spirit, Strength & Sportsmanship', desc: 'An exhilarating Sports Meet celebrating athletics, team games, and the competitive spirit of our enthusiastic students across all classes.', img: 'https://images.unsplash.com/photo-1543269664-76bc3997d9ea?w=600&q=80', delay: 'd2' },
+  const spotlightProgrammes = [
+    {
+      no: '01',
+      kicker: 'Academics',
+      title: 'Learn by Doing',
+      desc: 'Lessons come alive through activities, discussion, practical work, and close teacher guidance that help students truly understand what they learn.',
+      bullets: ['Inquiry-based classroom learning', 'Project and activity-driven teaching', 'Confidence in concepts, not just memory'],
+      img: 'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=1200&q=80',
+    },
+    {
+      no: '02',
+      kicker: 'Future Skills',
+      title: 'Critical Thinking & Communication',
+      desc: 'Students are encouraged to think clearly, speak with confidence, ask good questions, and grow into expressive young learners ready for every next step.',
+      bullets: ['Public speaking and expression', 'Problem-solving mindset', 'Confident learner identity'],
+      img: 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=1200&q=80',
+    },
+    {
+      no: '03',
+      kicker: 'Student Life',
+      title: 'Beyond the Classroom',
+      desc: 'Sports, arts, celebrations, and cultural experiences build energy into the site and show parents that school life is joyful, balanced, and memorable.',
+      bullets: ['Sports and fitness routines', 'Creative arts and performances', 'Events that build belonging'],
+      img: 'https://images.unsplash.com/photo-1513258496099-48168024aec0?w=1200&q=80',
+    },
+    {
+      no: '04',
+      kicker: 'Parent Trust',
+      title: 'A Supportive School Journey',
+      desc: 'This is the reassurance layer: personal attention, structured progress, and a campus culture where parents feel informed and children feel encouraged.',
+      bullets: ['Dedicated teachers and mentors', 'Safe, disciplined environment', 'Clear admissions and parent support'],
+      img: 'https://images.unsplash.com/photo-1577896851231-70ef18881754?w=1200&q=80',
+    },
+  ];
+  const testimonialCount = testimonials.length;
+
+  const learningPillars = [
+    {
+      no: '01',
+      title: 'Hands-On Learning',
+      desc: 'Our classrooms bring lessons alive through activities, projects, experiments, and practical discovery that build stronger understanding.',
+      points: ['Activity-first teaching', 'Practical classroom work', 'Stronger concept clarity'],
+    },
+    {
+      no: '02',
+      title: 'Future-Ready Thinking',
+      desc: 'Students are encouraged to question, analyse, present ideas, and solve problems with confidence instead of relying only on memorisation.',
+      points: ['Critical thinking habits', 'Communication and confidence', 'Creative problem-solving'],
+    },
+    {
+      no: '03',
+      title: 'Whole-Child Growth',
+      desc: 'Academics, sports, arts, discipline, and wellbeing move together so every child grows into a capable and balanced young person.',
+      points: ['Sports and fitness', 'Arts and expression', 'Values and self-discipline'],
+    },
+    {
+      no: '04',
+      title: 'Caring School Community',
+      desc: 'Nalanda combines structured learning with personal attention so families feel supported and children feel safe, seen, and encouraged.',
+      points: ['Dedicated teachers', 'Safe campus culture', 'Parent-friendly admissions'],
+    },
+  ];
+
+  const parentPromises = [
+    {
+      title: 'Personal Attention',
+      desc: 'Children are guided closely so parents feel their child is known, encouraged, and supported every day.',
+    },
+    {
+      title: 'Safe, Disciplined Environment',
+      desc: 'A calm and structured campus culture helps families trust the school experience from the very first visit.',
+    },
+    {
+      title: 'Balanced Growth',
+      desc: 'Academics, communication, confidence, sports, and values all move forward together instead of in isolation.',
+    },
+  ];
+
+  const admissionSteps = [
+    { no: '01', title: 'Connect With Us', desc: 'Reach out on WhatsApp or visit the campus to understand classes, transport, and school life.' },
+    { no: '02', title: 'Campus Visit', desc: 'Parents can walk through the campus, meet the team, and experience the learning environment directly.' },
+    { no: '03', title: 'Simple Enquiry', desc: 'Share your child\'s details and the class you are applying for. We help guide you through the next step.' },
+    { no: '04', title: 'Confident Start', desc: 'Once admitted, your child begins their journey in a caring, structured, and growth-focused environment.' },
+  ];
+
+  const campusMoments = [
+    { title: 'Learning Spaces', img: '/images/hero1.jpg' },
+    { title: 'Campus Life', img: '/images/campus-life.jpg' },
+    { title: 'Student Energy', img: '/images/student-energy.jpg' },
+    { title: 'Community Feel', img: '/images/community-feel.jpg' },
   ];
 
   const resetTimer = (n) => {
     clearInterval(timerRef.current);
     setSlideIndex(n);
     timerRef.current = setInterval(() => {
-      setSlideIndex(prev => (prev + 1) % slides.length);
+      setSlideIndex(prev => (prev + 1) % slideCount);
     }, 5200);
   };
 
   useEffect(() => {
     timerRef.current = setInterval(() => {
-      setSlideIndex(prev => (prev + 1) % slides.length);
+      setSlideIndex(prev => (prev + 1) % slideCount);
     }, 5200);
     return () => clearInterval(timerRef.current);
-  }, []);
+  }, [slideCount]);
 
   useEffect(() => {
     const tTimer = setInterval(() => {
-      setTestIndex(prev => (prev + 1) % testimonials.length);
+      setTestIndex(prev => (prev + 1) % testimonialCount);
     }, 6200);
     return () => clearInterval(tTimer);
-  }, []);
+  }, [testimonialCount]);
 
   const handleEnquiryChange = (field) => (e) => {
     setEnquiry(prev => ({ ...prev, [field]: e.target.value }));
@@ -136,9 +226,14 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>Nalanda High School - Nurturing Young Minds</title>
-        <meta name="description" content="Nalanda High School - quality education, values-based learning, and holistic development for every child." />
+        <title>Nalanda High School | Quality Education in Andhra Pradesh</title>
+        <meta name="description" content="Nalanda High School offers quality education, caring teachers, a safe campus, and all-round development for children from Classes I to X." />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="theme-color" content="#0d2340" />
+        <meta property="og:title" content="Nalanda High School" />
+        <meta property="og:description" content="Quality education, safe campus culture, and all-round development for every child." />
+        <meta property="og:type" content="website" />
+        <meta property="og:image" content="/images/about.jpg" />
         <link rel="icon" href="/images/logo.jpg" />
       </Head>
 
@@ -172,7 +267,7 @@ export default function Home() {
               <div className="drop">
                 <a href="#about">About Us</a>
                 <a href="#about">Our Mission</a>
-                <a href="#founders">Co-Founders</a>
+                <a href="#approach">Why Nalanda</a>
               </div>
             </li>
             <li><a href="#programmes">Academics</a></li>
@@ -194,28 +289,85 @@ export default function Home() {
           <a href="#programmes" onClick={() => setMenuOpen(false)}>Academics</a>
           <a href="#life" onClick={() => setMenuOpen(false)}>Life at Nalanda</a>
           <a href="#location" onClick={() => setMenuOpen(false)}>Our Campus</a>
-          <a href="#founders" onClick={() => setMenuOpen(false)}>Co-Founders</a>
+          <a href="#approach" onClick={() => setMenuOpen(false)}>Why Nalanda</a>
           <a href="#contact" onClick={() => setMenuOpen(false)} className="mob-cta">Apply Now</a>
         </div>
       </nav>
 
       {/* HERO SLIDER */}
       <section className="hero">
+        <div className="hero-ambient hero-ambient-a" />
+        <div className="hero-ambient hero-ambient-b" />
         {slides.map((s, i) => (
           <div key={i} className={`slide${slideIndex === i ? ' active' : ''}`}>
             <img className="slide-bg" src={s.bg} alt={s.tag} />
             <div className="slide-ov" />
-            <div className="slide-body">
-              <div className="slide-tag">{s.tag}</div>
-              <h1 className="slide-h">{s.h1}<em>{s.em}</em></h1>
-              <p className="slide-p">{s.p}</p>
-              <div className="hero-btns">
-                <a href={s.btn1.href} className="btn-solid">{s.btn1.label}</a>
-                <a href={s.btn2.href} className="btn-ghost">{s.btn2.label}</a>
-              </div>
-            </div>
           </div>
         ))}
+        <div className="hero-shell">
+          <div className="slide-body">
+            <div className="slide-tag">{activeSlide.tag}</div>
+            <h1 className="slide-h">{activeSlide.h1}<em>{activeSlide.em}</em></h1>
+            <p className="slide-p">{activeSlide.p}</p>
+            <div className="hero-trust-row">
+              <div className="hero-trust-pill">Structured Learning</div>
+              <div className="hero-trust-pill">Safe Campus Culture</div>
+              <div className="hero-trust-pill">Admissions Open</div>
+            </div>
+            <div className="hero-btns">
+              <a href={activeSlide.btn1.href} className="btn-solid">{activeSlide.btn1.label}</a>
+              <a href={activeSlide.btn2.href} className="btn-ghost">{activeSlide.btn2.label}</a>
+            </div>
+            <div className="hero-caption">
+              Building strong foundations in academics, confidence, discipline, and character from Classes I to X.
+            </div>
+          </div>
+          <aside className="hero-aside sr d2">
+            <div className="hero-showcase">
+              <div className="hero-showcase-main">
+                <img src="/images/about.jpg" alt="Nalanda campus view" />
+                <div className="hero-showcase-badge">
+                  <span>Campus Environment</span>
+                  <strong>A caring school setting where students can learn with confidence.</strong>
+                </div>
+              </div>
+              <div className="hero-showcase-stack">
+                <div className="hero-mini-card">
+                  <img src="/images/split.jpg" alt="Nalanda campus" />
+                  <div>
+                    <span>Campus Life</span>
+                    <strong>Structured, safe, and vibrant</strong>
+                  </div>
+                </div>
+                <div className="hero-mini-card">
+                  <img src="/images/hero3.jpg" alt="Nalanda students" />
+                  <div>
+                    <span>Admissions Open</span>
+                    <strong>Classes I to X</strong>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="hero-float-card sr">
+              <div className="hero-float-label">Parent Confidence</div>
+              <div className="hero-float-title">A school families can feel good about from the very first visit.</div>
+              <div className="hero-float-stats">
+                <div>
+                  <strong>500+</strong>
+                  <span>Students</span>
+                </div>
+                <div>
+                  <strong>I-X</strong>
+                  <span>Classes</span>
+                </div>
+                <div>
+                  <strong>50+</strong>
+                  <span>Educators</span>
+                </div>
+              </div>
+            </div>
+          </aside>
+        </div>
         <div className="slider-ctrl">
           <div className="dots">
             {slides.map((_, i) => (
@@ -239,6 +391,28 @@ export default function Home() {
         </div>
       </div>
 
+      <div className="news-ribbon" aria-label="School highlights">
+        <div className="news-ribbon-track">
+          {[
+            'Admissions Open for Classes I to X',
+            'Safe campus and dedicated teachers',
+            'Activity-based learning environment',
+            'Transport available across nearby areas',
+            'Sports, arts, discipline, and academic growth',
+            'Campus visits and parent enquiries welcome',
+          ].concat([
+            'Admissions Open for Classes I to X',
+            'Safe campus and dedicated teachers',
+            'Activity-based learning environment',
+            'Transport available across nearby areas',
+            'Sports, arts, discipline, and academic growth',
+            'Campus visits and parent enquiries welcome',
+          ]).map((item, i) => (
+            <span key={i} className="news-ribbon-item">{item}</span>
+          ))}
+        </div>
+      </div>
+
       {/* ABOUT */}
       <section className="section" id="about">
         <div className="wrap">
@@ -253,7 +427,7 @@ export default function Home() {
             <div className="sr d2">
               <div className="eyebrow">About Nalanda High School</div>
               <h2 className="sec-title">Where Every Child Gets<br />a Chance to <em>Shine</em></h2>
-              <p className="sec-body">Nalanda High School is inspired by the legacy of ancient Nalanda - the world's first great university - and carries that spirit forward by providing quality, values-based education to students from Classes I to X. Rooted in community and dedicated to excellence, we build not just academic skills but confident, compassionate human beings.</p>
+              <p className="sec-body">Nalanda High School is inspired by the legacy of ancient Nalanda - the world&apos;s first great university - and carries that spirit forward by providing quality, values-based education to students from Classes I to X. Rooted in community and dedicated to excellence, we build not just academic skills but confident, compassionate human beings.</p>
               <div className="features">
                 <div className="feat">
                   <div className="feat-ico">01</div>
@@ -286,27 +460,142 @@ export default function Home() {
       {/* PROGRAMMES */}
       <section className="section section-bg" id="programmes">
         <div className="wrap">
-          <div className="sr" style={{ textAlign: 'center' }}>
-            <div className="eyebrow eyebrow-c">Our Programmes</div>
-            <h2 className="sec-title" style={{ maxWidth: '540px', margin: '0 auto 14px' }}>All-Round Development<br />for <em>Every Student</em></h2>
-            <p className="sec-body" style={{ margin: '0 auto', textAlign: 'center' }}>Beyond academics - Nalanda invests in every dimension of a child's growth.</p>
-          </div>
-          <div className="prog-grid">
-            {[
-              { tag: 'Academics', title: 'Activity-Based Learning', desc: 'Hands-on, inquiry-driven classrooms that spark curiosity and build deep conceptual understanding from Class I to X.', img: 'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=600&q=80', delay: '' },
-              { tag: 'Sports & Fitness', title: 'Physical Education & Sports', desc: 'Regular sports, yoga, and physical fitness programmes that build teamwork, discipline, and healthy habits.', img: 'https://images.unsplash.com/photo-1576765608535-5f04d1e3f289?w=600&q=80', delay: 'd1' },
-              { tag: 'Arts & Culture', title: 'Creative Arts Festival', desc: 'Annual art festivals, cultural performances, and creative workshops that celebrate each child\'s unique talent and expression.', img: 'https://images.unsplash.com/photo-1513258496099-48168024aec0?w=600&q=80', delay: 'd2' },
-              { tag: 'Life Skills', title: 'Life Skills Programme', desc: 'Communication, emotional intelligence, and career awareness - preparing students for life beyond school walls.', img: 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=600&q=80', delay: 'd3' },
-            ].map((p, i) => (
-              <div key={i} className={`prog-card sr ${p.delay}`}>
-                <div className="prog-img"><img src={p.img} alt={p.title} /></div>
-                <div className="prog-body">
-                  <div className="prog-tag">{p.tag}</div>
-                  <div className="prog-title">{p.title}</div>
-                  <div className="prog-desc">{p.desc}</div>
-                  <a href="#contact" className="readmore">Learn More</a>
-                </div>
+          <div className="programme-hero sr">
+            <div className="programme-hero-copy">
+              <div className="eyebrow">Our Programmes</div>
+              <h2 className="sec-title" style={{ maxWidth: '620px', marginBottom: '16px' }}>
+                All-Round Development
+                <br />
+                for <em>Every Student</em>
+              </h2>
+              <p className="sec-body" style={{ maxWidth: '620px' }}>
+                Beyond academics, Nalanda builds curiosity, confidence, discipline, communication, and a strong sense of purpose through a more complete school experience.
+              </p>
+            </div>
+            <div className="programme-hero-metrics sr d1">
+              <div className="programme-metric-card">
+                <span>Learning Model</span>
+                <strong>Activity-Based</strong>
               </div>
+              <div className="programme-metric-card">
+                <span>Growth Areas</span>
+                <strong>Academics + Life Skills</strong>
+              </div>
+              <div className="programme-metric-card">
+                <span>School Journey</span>
+                <strong>Classes I to X</strong>
+              </div>
+            </div>
+          </div>
+          <div className="programme-showcase">
+            <div className="programme-tabs sr">
+              {spotlightProgrammes.map((programme, i) => (
+                <button
+                  key={programme.no}
+                  type="button"
+                  className={`programme-tab${activeProgramme === i ? ' active' : ''}`}
+                  onClick={() => setActiveProgramme(i)}
+                  onMouseEnter={() => setActiveProgramme(i)}
+                >
+                  <span className="programme-tab-no">{programme.no}</span>
+                  <span className="programme-tab-copy">
+                    <span className="programme-tab-kicker">{programme.kicker}</span>
+                    <span className="programme-tab-title">{programme.title}</span>
+                  </span>
+                </button>
+              ))}
+            </div>
+            <div className="programme-spotlight sr d1">
+              <div className="programme-spotlight-image">
+                <img src={spotlightProgrammes[activeProgramme].img} alt={spotlightProgrammes[activeProgramme].title} />
+              </div>
+              <div className="programme-spotlight-body">
+                <div className="prog-tag">{spotlightProgrammes[activeProgramme].kicker}</div>
+                <div className="programme-spotlight-title">{spotlightProgrammes[activeProgramme].title}</div>
+                <div className="prog-desc">{spotlightProgrammes[activeProgramme].desc}</div>
+                <div className="programme-spotlight-points">
+                  {spotlightProgrammes[activeProgramme].bullets.map((bullet) => (
+                    <div key={bullet} className="programme-point">{bullet}</div>
+                  ))}
+                </div>
+                <a href="#contact" className="readmore">Book a Campus Visit</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="section campus-mosaic-sec">
+        <div className="wrap">
+          <div className="campus-mosaic-head sr">
+            <div className="eyebrow eyebrow-c">The Nalanda Experience</div>
+            <h2 className="sec-title" style={{ textAlign: 'center', maxWidth: '700px', margin: '0 auto 14px' }}>
+              A More Cinematic Look at
+              <br />
+              <em>School Life and Environment</em>
+            </h2>
+          </div>
+          <div className="campus-mosaic">
+            {campusMoments.map((item, i) => (
+              <article key={item.title} className={`campus-tile campus-tile-${i + 1} sr d${(i % 3) + 1}`}>
+                <img src={item.img} alt={item.title} />
+                <div className="campus-tile-overlay" />
+                <div className="campus-tile-copy">
+                  <span>{item.title}</span>
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="section parent-promise-sec">
+        <div className="wrap parent-promise-wrap">
+          <div className="parent-promise-copy sr">
+            <div className="eyebrow">For New Parents</div>
+            <h2 className="sec-title">A School Experience That Feels<br /><em>Reassuring and Aspirational</em></h2>
+            <p className="sec-body">Parents are not only looking for marks. They want safety, attention, communication, confidence-building, and a place where their child will genuinely grow. Nalanda is positioned to offer exactly that story.</p>
+            <a href="#contact" className="readmore">Start Your Enquiry</a>
+          </div>
+          <div className="parent-promise-grid">
+            {parentPromises.map((item, i) => (
+              <article key={item.title} className={`promise-card sr d${i + 1}`}>
+                <div className="promise-icon">0{i + 1}</div>
+                <h3 className="promise-title">{item.title}</h3>
+                <p className="promise-desc">{item.desc}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="section feature-ref-sec" id="approach">
+        <div className="wrap">
+          <div className="feature-ref-head sr">
+            <div className="eyebrow eyebrow-c">Why Families Choose Nalanda</div>
+            <h2 className="sec-title" style={{ textAlign: 'center', maxWidth: '720px', margin: '0 auto 14px' }}>
+              A More Modern Learning Experience
+              <br />
+              with <em>Strong Foundations</em>
+            </h2>
+            <p className="sec-body" style={{ margin: '0 auto', textAlign: 'center', maxWidth: '700px' }}>
+              Nalanda combines strong academics with confidence-building, discipline, creativity, and personal attention so students grow in every direction.
+            </p>
+          </div>
+          <div className="pillar-grid">
+            {learningPillars.map((pillar, i) => (
+              <article key={pillar.no} className={`pillar-card sr ${i % 2 ? 'd1' : ''}`}>
+                <div className="pillar-top">
+                  <span className="pillar-no">{pillar.no}</span>
+                  <h3 className="pillar-title">{pillar.title}</h3>
+                </div>
+                <p className="pillar-desc">{pillar.desc}</p>
+                <div className="pillar-points">
+                  {pillar.points.map((point) => (
+                    <span key={point} className="pillar-point">{point}</span>
+                  ))}
+                </div>
+              </article>
             ))}
           </div>
         </div>
@@ -316,7 +605,7 @@ export default function Home() {
       <section className="split" id="life">
         <div className="split-txt sr">
           <div className="eyebrow eyebrow-lt">A Campus Full of Life</div>
-          <h2 className="sec-title sec-title-w">Our Students Are<br />Prepared for <em style={{ color: '#86efac' }}>Achievement</em></h2>
+          <h2 className="sec-title sec-title-w">Our Students Are<br />Prepared for <em style={{ color: '#dbe8f5' }}>Achievement</em></h2>
           <p className="sec-body sec-body-w">Nalanda High School nurtures not just academic excellence but holistic development - arts, sports, life skills, and character. Our students leave not just with marks, but with confidence, values, and a vision for their future.</p>
           <div className="split-btns">
             <a href="#programmes" className="btn-wh-solid">Our Academics</a>
@@ -325,33 +614,6 @@ export default function Home() {
         </div>
         <div className="split-img">
           <img src="/images/split.jpg" alt="Nalanda campus aerial view" />
-        </div>
-      </section>
-
-      {/* CO-FOUNDERS */}
-      <section className="founders-sec" id="founders">
-        <div className="wrap">
-          <div className="founders-hdr sr">
-            <div className="eyebrow eyebrow-c">Leadership</div>
-            <h2 className="sec-title" style={{ textAlign: 'center', maxWidth: '520px', margin: '0 auto 14px' }}>The Visionaries Behind<br /><em>Nalanda High School</em></h2>
-            <p className="sec-body" style={{ textAlign: 'center', margin: '0 auto' }}>Built on a shared dream of accessible, quality education - meet the co-founders who brought Nalanda to life.</p>
-          </div>
-          <div className="founders-grid">
-            <div className="founder-card sr d1">
-              <div className="founder-avatar">NR</div>
-              <div className="founder-role-tag">Co-Founder &amp; Director</div>
-              <div className="founder-name">Ilapuram Namratha Reddy</div>
-              <div className="founder-divider" />
-              <p className="founder-bio">A passionate advocate for quality education, Namratha Reddy co-founded Nalanda High School with the vision of creating a nurturing institution where every child has the opportunity to discover their potential and build a brighter future for themselves and their community.</p>
-            </div>
-            <div className="founder-card sr d2">
-              <div className="founder-avatar">KR</div>
-              <div className="founder-role-tag">Co-Founder &amp; Managing Director</div>
-              <div className="founder-name">Ilapuram Kiran Reddy</div>
-              <div className="founder-divider" />
-              <p className="founder-bio">Driven by a deep commitment to holistic development, Kiran Reddy co-founded Nalanda to bridge the gap between traditional academics and real-world readiness. His leadership ensures the school continuously raises the bar for learning outcomes and student wellbeing.</p>
-            </div>
-          </div>
         </div>
       </section>
 
@@ -390,7 +652,7 @@ export default function Home() {
                   <div className="loc-ico">LOC</div>
                   <div>
                     <div className="loc-label">Address</div>
-                    <div className="loc-val">Nalanda High School<br />Andhra Pradesh, India<br /><a href={mapsLink} target="_blank" rel="noreferrer" style={{ color: 'var(--g2)', fontSize: '.78rem', fontStyle: 'italic' }}>Open exact school location in Google Maps</a></div>
+                    <div className="loc-val">Nalanda High School<br />Andhra Pradesh, India<br /><a href={mapsLink} target="_blank" rel="noreferrer" style={{ color: 'var(--accent-1)', fontSize: '.78rem', fontStyle: 'italic' }}>Open exact school location in Google Maps</a></div>
                   </div>
                 </div>
                 <div className="loc-item">
@@ -429,26 +691,20 @@ export default function Home() {
         </div>
       </section>
 
-      {/* EVENTS / NEWS */}
-      <section className="section section-bg" id="life-events">
+      <section className="section admission-journey-sec">
         <div className="wrap">
-          <div className="sr" style={{ textAlign: 'center' }}>
-            <div className="eyebrow eyebrow-c">School Life</div>
-            <h2 className="sec-title" style={{ maxWidth: '520px', margin: '0 auto 14px' }}>What's Happening at<br /><em>Nalanda High School</em></h2>
+          <div className="journey-head sr">
+            <div className="eyebrow eyebrow-c">Admissions Journey</div>
+            <h2 className="sec-title" style={{ textAlign: 'center', maxWidth: '680px', margin: '0 auto 14px' }}>A Smooth Path from First Enquiry<br /><em>to First Day at School</em></h2>
+            <p className="sec-body" style={{ margin: '0 auto', textAlign: 'center', maxWidth: '680px' }}>From your first message to your child&apos;s first day, our admissions process is simple, welcoming, and easy for families to understand.</p>
           </div>
-          <div className="events-grid">
-            {schoolEvents.map((ev, i) => (
-              <div key={i} className={`ev-card sr ${ev.delay}`}>
-                <div className="ev-img">
-                  <img src={ev.img} alt={ev.title} />
-                  <span className="ev-tag">{ev.tag}</span>
-                </div>
-                <div className="ev-body">
-                  <div className="ev-title">{ev.title}</div>
-                  <div className="ev-desc">{ev.desc}</div>
-                  <a href="#contact" className="readmore">Read More</a>
-                </div>
-              </div>
+          <div className="journey-grid">
+            {admissionSteps.map((step, i) => (
+              <article key={step.no} className={`journey-card sr d${i % 4}`}>
+                <div className="journey-no">{step.no}</div>
+                <h3 className="journey-title">{step.title}</h3>
+                <p className="journey-desc">{step.desc}</p>
+              </article>
             ))}
           </div>
         </div>
@@ -458,11 +714,11 @@ export default function Home() {
       <section className="test-sec">
         <div className="test-inner">
           <div className="eyebrow eyebrow-lt eyebrow-c sr">Parent Testimonials</div>
-          <h2 className="sec-title sec-title-w sr d1">Voices from the<br /><em style={{ color: '#86efac' }}>Nalanda Family</em></h2>
+          <h2 className="sec-title sec-title-w sr d1">Voices from the<br /><em style={{ color: '#dbe8f5' }}>Nalanda Family</em></h2>
           <div className="tslider">
             {testimonials.map((t, i) => (
               <div key={i} className={`tslide${testIndex === i ? ' on' : ''}`}>
-                <div className="tq">"</div>
+                <div className="tq">&ldquo;</div>
                 <p className="t-text">{t.text}</p>
                 <div className="t-name">{t.name}</div>
                 <div className="t-role">{t.role}</div>
@@ -481,15 +737,15 @@ export default function Home() {
       <section className="admit-sec" id="contact">
         <div className="admit-inner">
           <div className="admit-txt sr">
-            <div className="eyebrow">Admissions Open 2025-26</div>
+            <div className="eyebrow">Admissions Open</div>
             <h2 className="sec-title">Give Your Child the<br /><em>Education They Deserve</em></h2>
             <p className="sec-body">Nalanda High School welcomes all children from Classes I to X. Our doors are open to every family in the community. Enrol today and take the first step toward a brighter future.</p>
             <div className="admit-btns" style={{ marginTop: '28px' }}>
               <a href={whatsappLink} target="_blank" rel="noreferrer" className="btn-green">WhatsApp Now</a>
               <a href={mapsLink} target="_blank" rel="noreferrer" className="btn-green-out">Open School Location</a>
             </div>
-            <div style={{ marginTop: '32px', padding: '20px', background: '#fff', border: '1px solid var(--bdr)', borderRadius: 'var(--r)' }}>
-              <p style={{ fontSize: '.78rem', fontWeight: 700, color: 'var(--navy)', marginBottom: '10px' }}>School Office</p>
+            <div style={{ marginTop: '32px', padding: '22px', background: 'var(--panel-strong)', border: '1px solid rgba(255,255,255,.7)', borderRadius: '20px', boxShadow: 'var(--shadow-sm)', backdropFilter: 'var(--glass)' }}>
+              <p style={{ fontSize: '.78rem', fontWeight: 700, color: 'var(--navy)', marginBottom: '10px', letterSpacing: '.08em', textTransform: 'uppercase' }}>School Office</p>
               <p style={{ fontSize: '.8rem', color: 'var(--muted)', lineHeight: 1.7 }}>
                 Nalanda High School<br />
                 Andhra Pradesh, India<br />
@@ -546,9 +802,9 @@ export default function Home() {
             <h5>Quick Links</h5>
             <a href="#">Home</a>
             <a href="#about">About Us</a>
+            <a href="#approach">Why Nalanda</a>
             <a href="#programmes">Academics</a>
             <a href="#life">Life at Nalanda</a>
-            <a href="#founders">Co-Founders</a>
             <a href="#location">Our Campus</a>
             <a href="#contact">Admissions</a>
             <a href="#contact">Contact</a>
@@ -573,10 +829,15 @@ export default function Home() {
           </div>
         </div>
         <div className="footer-bot">
-          <p>Copyright 2025 Nalanda High School. All rights reserved.</p>
+          <p>Copyright {currentYear} Nalanda High School. All rights reserved.</p>
           <p>500+ Students - Classes I to X - Andhra Pradesh, India</p>
         </div>
       </footer>
+
+      <div className="mobile-cta-bar">
+        <a href={whatsappLink} target="_blank" rel="noreferrer" className="mobile-cta-primary">WhatsApp Admissions</a>
+        <a href="#contact" className="mobile-cta-secondary">Apply Now</a>
+      </div>
     </>
   );
 }

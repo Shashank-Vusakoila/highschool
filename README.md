@@ -1,109 +1,67 @@
-# Nalanda High School — Next.js Website
+# Nalanda High School Website
 
-A production-ready Next.js website for Nalanda High School, adapted from the original design.
+A polished, single-page Next.js website for Nalanda High School.
 
-## 🚀 Getting Started
+## Stack
 
-### Prerequisites
-- Node.js 18+ installed
-- npm or yarn
+- Next.js 14
+- React 18
+- Global CSS in `styles/globals.css`
 
-### Installation
+## Local Development
 
 ```bash
 npm install
-```
-
-### Development
-
-```bash
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) in your browser.
+Open `http://localhost:3000`.
 
-### Production Build
+## Production Build
 
 ```bash
 npm run build
 npm run start
 ```
 
----
+## Project Structure
 
-## 📦 Deployment
-
-### Deploy to Vercel (Recommended — Free)
-
-1. Push this project to a GitHub repository
-2. Go to [vercel.com](https://vercel.com) and sign up / log in
-3. Click **"Add New Project"** → Import your GitHub repo
-4. Vercel auto-detects Next.js — just click **Deploy**
-5. Your site will be live at `your-project.vercel.app`
-
-### Deploy to Netlify
-
-1. Run `npm run build` locally
-2. Upload the `.next` folder to Netlify
-3. Or connect your GitHub repo and set build command to `npm run build`
-
----
-
-## 🗺️ Adding the Google Maps Embed
-
-1. Go to [Google Maps](https://maps.google.com)
-2. Search for your school location
-3. Click **Share** → **Embed a map**
-4. Copy the `src="..."` URL from the iframe code
-5. Open `pages/index.js`
-6. Find the comment `IMPORTANT: Replace the src below...`
-7. Replace the placeholder `src` with your actual Google Maps embed URL
-
----
-
-## 📁 Project Structure
-
-```
-nalanda-school/
-├── pages/
-│   ├── _app.js          # App wrapper (imports global CSS)
-│   ├── _document.js     # Custom HTML document
-│   └── index.js         # Main homepage
-├── styles/
-│   └── globals.css      # All styles (green theme)
-├── public/
-│   └── images/
-│       ├── hero1.jpg    # Aerial view - slide 1
-│       ├── hero2.jpg    # Aerial front - slide 2
-│       ├── hero3.jpg    # Ground level - slide 3
-│       ├── about.jpg    # About section
-│       ├── split.jpg    # Split section
-│       ├── campus.jpg   # Campus photo
-│       └── logo.jpg     # NHS logo
-├── package.json
-├── next.config.js
-└── README.md
+```text
+pages/
+  _app.js
+  _document.js
+  index.js
+public/images/
+styles/
+  globals.css
 ```
 
----
+## Client Content To Verify Before Launch
 
-## ✏️ Customization Checklist
+- Exact school address
+- Final phone / WhatsApp number
+- Final email address
+- Real admissions policy or wording
+- Social media links in the footer
+- Whether the displayed statistics are approved for public use
 
-- [ ] Add your full school address in `pages/index.js` (search for "Add your full address")
-- [ ] Replace the Google Maps embed `src` with your actual link
-- [ ] Update phone numbers if needed
-- [ ] Update email address
-- [ ] Add real testimonials from parents
-- [ ] Add/update events in the "School Life" section
-- [ ] Add actual establishment year
+## Deployment
 
----
+This project can be deployed directly to Vercel or any platform that supports Next.js.
 
-## 🎨 Theme
+### Vercel
 
-- **Primary Green:** `#256B3A`
-- **Dark Green:** `#1B5E30`
-- **Light Green:** `#6DC476`
-- **Navy:** `#0D1F2D`
-- **Background:** `#F4FAF5`
-- **Fonts:** Nunito (body) + Merriweather (headings)
+1. Push the repository to GitHub.
+2. Import the repository into Vercel.
+3. Keep the default Next.js build settings.
+4. Deploy.
+
+### Manual Production Check
+
+Before handing off or deploying, run:
+
+```bash
+npm run build
+```
+
+If the build passes, the project is ready for deployment.
