@@ -454,20 +454,6 @@ export default function Home() {
                 Beyond academics, Nalanda builds curiosity, confidence, discipline, communication, and a strong sense of purpose through a more complete school experience.
               </p>
             </div>
-            <div className="programme-hero-metrics sr d1">
-              <div className="programme-metric-card">
-                <span>Learning Model</span>
-                <strong>Activity-Based</strong>
-              </div>
-              <div className="programme-metric-card">
-                <span>Growth Areas</span>
-                <strong>Academics + Life Skills</strong>
-              </div>
-              <div className="programme-metric-card">
-                <span>School Journey</span>
-                <strong>Nursery to 10th Class</strong>
-              </div>
-            </div>
           </div>
           <div className="programme-showcase">
             <div className="programme-tabs sr">
