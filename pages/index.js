@@ -348,24 +348,6 @@ export default function Home() {
                 </div>
               </div>
             </div>
-            <div className="hero-float-card sr">
-              <div className="hero-float-label">Parent Confidence</div>
-              <div className="hero-float-title">A school families can feel good about from the very first visit.</div>
-              <div className="hero-float-stats">
-                <div>
-                  <strong>500+</strong>
-                  <span>Students</span>
-                </div>
-                <div>
-                  <strong>I-X</strong>
-                  <span>Classes</span>
-                </div>
-                <div>
-                  <strong>50+</strong>
-                  <span>Educators</span>
-                </div>
-              </div>
-            </div>
           </aside>
         </div>
         <div className="slider-ctrl">
