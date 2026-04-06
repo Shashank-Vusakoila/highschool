@@ -253,7 +253,7 @@ export default function Home() {
         <title>Nalanda High School | Quality Education in Andhra Pradesh</title>
         <meta name="description" content="Nalanda High School offers quality education, caring teachers, a safe campus, and all-round development for children from Nursery to 10th Class." />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta name="theme-color" content="#0d1f2d" />
+        <meta name="theme-color" content="#0d2340" />
         <meta property="og:title" content="Nalanda High School" />
         <meta property="og:description" content="Quality education, safe campus culture, and all-round development for every child." />
         <meta property="og:type" content="website" />
@@ -646,7 +646,7 @@ export default function Home() {
       <section className="split" id="life">
         <div className="split-txt sr">
           <div className="eyebrow eyebrow-lt">A Campus Full of Life</div>
-          <h2 className="sec-title sec-title-w">Our Students Are<br />Prepared for <em style={{ color: '#d1fae5' }}>Achievement</em></h2>
+          <h2 className="sec-title sec-title-w">Our Students Are<br />Prepared for <em style={{ color: '#dbeeff' }}>Achievement</em></h2>
           <p className="sec-body sec-body-w">Nalanda High School nurtures not just academic excellence but holistic development - arts, sports, life skills, and character. Our students leave not just with marks, but with confidence, values, and a vision for their future.</p>
           <div className="split-btns">
             <a href="#programmes" className="btn-wh-solid">Our Academics</a>
@@ -755,7 +755,7 @@ export default function Home() {
       <section className="test-sec">
         <div className="test-inner">
           <div className="eyebrow eyebrow-lt eyebrow-c sr">Parent Testimonials</div>
-          <h2 className="sec-title sec-title-w sr d1">Voices from the<br /><em style={{ color: '#d1fae5' }}>Nalanda Family</em></h2>
+          <h2 className="sec-title sec-title-w sr d1">Voices from the<br /><em style={{ color: '#dbeeff' }}>Nalanda Family</em></h2>
           <div className="tslider">
             {testimonials.map((t, i) => (
               <div key={i} className={`tslide${testIndex === i ? ' on' : ''}`}>
@@ -884,4 +884,5 @@ export default function Home() {
     </>
   );
 }
+
 
