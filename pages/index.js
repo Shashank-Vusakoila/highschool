@@ -4,7 +4,9 @@ import { useState, useEffect, useRef } from 'react';
 export default function Home() {
   const [slideIndex, setSlideIndex] = useState(0);
   const [testIndex, setTestIndex] = useState(0);
-  const [activeProgramme, setActiveProgramme] = useState(0);
+  const [programmeCarouselIndex, setProgrammeCarouselIndex] = useState(0);
+  const [journeyRevealRun, setJourneyRevealRun] = useState(0);
+  const [journeyRevealCount, setJourneyRevealCount] = useState(0);
   const [menuOpen, setMenuOpen] = useState(false);
   const [enquiry, setEnquiry] = useState({
     parentName: '',
@@ -15,9 +17,11 @@ export default function Home() {
   });
   const [formMessage, setFormMessage] = useState('');
   const timerRef = useRef(null);
+  const journeyTimerRef = useRef(null);
+  const journeySectionRef = useRef(null);
   const mapsLink = 'https://maps.app.goo.gl/c4gayoQiuib1UGxHA?g_st=ipc';
   const mapsEmbedLink = 'https://www.google.com/maps?q=Nalanda%20High%20School%20Andhra%20Pradesh%20India&z=15&output=embed';
-  const whatsappNumber = '8885334101';
+  const whatsappNumber = '7732034101';
   const whatsappLink = `https://wa.me/91${whatsappNumber}`;
 
   const slides = [
@@ -75,68 +79,76 @@ export default function Home() {
     {
       no: '01',
       kicker: 'Academics',
-      title: 'Learn by Doing',
-      desc: 'Lessons come alive through activities, discussion, practical work, and close teacher guidance that help students truly understand what they learn.',
+      title: 'Activity-Based Learning',
+      desc: 'Hands-on, inquiry-driven classrooms that spark curiosity and build deep conceptual understanding from Class I to X.',
       bullets: ['Inquiry-based classroom learning', 'Project and activity-driven teaching', 'Confidence in concepts, not just memory'],
-      img: 'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=1200&q=80',
+      img: '/images/programmes/activity-based-learning.jpeg',
+      imgAlt: 'Students learning in the computer lab',
     },
     {
       no: '02',
-      kicker: 'Future Skills',
-      title: 'Critical Thinking & Communication',
-      desc: 'Students are encouraged to think clearly, speak with confidence, ask good questions, and grow into expressive young learners ready for every next step.',
-      bullets: ['Public speaking and expression', 'Problem-solving mindset', 'Confident learner identity'],
-      img: 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=1200&q=80',
+      kicker: 'Sports & Fitness',
+      title: 'Physical Education & Sports',
+      desc: 'Regular sports, yoga, and physical fitness programmes that build teamwork, discipline, and healthy habits.',
+      bullets: ['Team sports and athletics', 'Fitness and wellness routines', 'Leadership through sports'],
+      img: '/images/programmes/physical-education-sports-main.jpeg',
+      imgAlt: 'Students doing outdoor physical exercise',
+      carouselImgs: [
+        {
+          src: '/images/programmes/physical-education-sports-main.jpeg',
+          alt: 'Students doing outdoor physical exercise',
+        },
+        {
+          src: '/images/programmes/physical-education-sports-secondary.jpeg',
+          alt: 'Students practicing meditation together',
+        },
+      ],
     },
     {
       no: '03',
-      kicker: 'Student Life',
-      title: 'Beyond the Classroom',
-      desc: 'Sports, arts, celebrations, and cultural experiences build energy into the site and show parents that school life is joyful, balanced, and memorable.',
-      bullets: ['Sports and fitness routines', 'Creative arts and performances', 'Events that build belonging'],
-      img: 'https://images.unsplash.com/photo-1513258496099-48168024aec0?w=1200&q=80',
+      kicker: 'Arts & Culture',
+      title: 'Creative Arts Festival',
+      desc: 'Annual art festivals, cultural performances, and creative workshops that celebrate each child\'s unique talent and expression.',
+      bullets: ['Creative arts performances', 'Cultural celebrations', 'Student art exhibitions'],
+      img: '/images/programmes/creative-arts-festival.jpeg',
+      imgAlt: 'Students participating in a school cultural programme',
     },
     {
       no: '04',
-      kicker: 'Parent Trust',
-      title: 'A Supportive School Journey',
-      desc: 'This is the reassurance layer: personal attention, structured progress, and a campus culture where parents feel informed and children feel encouraged.',
-      bullets: ['Dedicated teachers and mentors', 'Safe, disciplined environment', 'Clear admissions and parent support'],
-      img: 'https://images.unsplash.com/photo-1577896851231-70ef18881754?w=1200&q=80',
+      kicker: 'Life Skills',
+      title: 'Life Skills Programme',
+      desc: 'Communication, emotional intelligence, and career awareness - preparing students for life beyond school walls.',
+      bullets: ['Communication skills', 'Emotional intelligence', 'Career readiness'],
+      img: '/images/programmes/life-skills-programme.jpeg',
+      imgAlt: 'Students learning through hands-on field activity',
     },
   ];
   const testimonialCount = testimonials.length;
-
-  const programmeMetrics = [
-    { label: 'Established', value: '2012 with a community-first vision' },
-    { label: 'Learning Path', value: 'Nursery to 10th with structured progression' },
-    { label: 'Parent Support', value: 'Simple admissions and direct guidance' },
-  ];
 
   const learningPillars = [
     {
       no: '01',
       title: 'Hands-On Learning',
-      desc: 'Our classrooms bring lessons alive through activities, projects, experiments, and practical discovery that build stronger understanding.',
-      points: ['Activity-first teaching', 'Practical classroom work', 'Stronger concept clarity'],
+      desc: 'Activity-led lessons help students understand clearly and stay engaged every day.',
+      points: ['Activity-led teaching', 'Practical learning', 'Clear concepts'],
     },
     {
       no: '02',
       title: 'Future-Ready Thinking',
-      desc: 'Students are encouraged to question, analyse, present ideas, and solve problems with confidence instead of relying only on memorisation.',
-      points: ['Critical thinking habits', 'Communication and confidence', 'Creative problem-solving'],
+      desc: 'Children learn to think, speak, and solve problems with growing confidence.',
+      points: ['Critical thinking', 'Confident communication', 'Problem-solving'],
     },
     {
       no: '03',
       title: 'Whole-Child Growth',
-      desc: 'Academics, sports, arts, discipline, and wellbeing move together so every child grows into a capable and balanced young person.',
-      points: ['Sports and fitness', 'Arts and expression', 'Values and self-discipline'],
+      desc: 'Academics, sports, arts, and values come together for balanced development.',
+      points: ['Sports and fitness', 'Arts and creativity', 'Values and discipline'],
     },
     {
       no: '04',
       title: 'Caring School Community',
-      desc: 'Nalanda combines structured learning with personal attention so families feel supported and children feel safe, seen, and encouraged.',
-      points: ['Dedicated teachers', 'Safe campus culture', 'Parent-friendly admissions'],
+      desc: 'A caring campus and supportive teachers help every child feel safe and encouraged.',
+      points: ['Dedicated teachers', 'Safe campus', 'Parent support'],
     },
   ];
 
@@ -156,10 +168,10 @@ export default function Home() {
   ];
 
   const admissionSteps = [
-    { no: '01', title: 'Connect With Us', desc: 'Reach out on WhatsApp or visit the campus to understand classes, transport, and school life.' },
-    { no: '02', title: 'Campus Visit', desc: 'Parents can walk through the campus, meet the team, and experience the learning environment directly.' },
-    { no: '03', title: 'Simple Enquiry', desc: 'Share your child\'s details and the class you are applying for. We help guide you through the next step.' },
-    { no: '04', title: 'Confident Start', desc: 'Once admitted, your child begins their journey in a caring, structured, and growth-focused environment.' },
+    { no: '01', title: 'Connect', desc: 'Message us on WhatsApp or visit the campus.' },
+    { no: '02', title: 'Visit', desc: 'Meet the team and see the school environment.' },
+    { no: '03', title: 'Enquire', desc: 'Share your child\'s details and class requirement.' },
+    { no: '04', title: 'Start', desc: 'Begin your child\'s journey with confidence.' },
   ];
 
   const campusMoments = [
@@ -242,6 +254,53 @@ export default function Home() {
       { threshold: 0.12 }
     );
     document.querySelectorAll('.sr').forEach(el => observer.observe(el));
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    const programmeTimer = setInterval(() => {
+      setProgrammeCarouselIndex((prev) => (prev + 1) % 2);
+    }, 2000);
+
+    return () => clearInterval(programmeTimer);
+  }, []);
+
+  useEffect(() => {
+    if (!journeyRevealRun) return undefined;
+
+    clearInterval(journeyTimerRef.current);
+    setJourneyRevealCount(0);
+
+    let currentStep = 0;
+    journeyTimerRef.current = setInterval(() => {
+      currentStep += 1;
+      setJourneyRevealCount(currentStep);
+
+      if (currentStep >= admissionSteps.length) {
+        clearInterval(journeyTimerRef.current);
+      }
+    }, 260);
+
+    return () => clearInterval(journeyTimerRef.current);
+  }, [journeyRevealRun, admissionSteps.length]);
+
+  useEffect(() => {
+    const section = journeySectionRef.current;
+    if (!section) return undefined;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setJourneyRevealRun((run) => run || 1);
+            observer.disconnect();
+          }
+        });
+      },
+      { threshold: 0.3 }
+    );
+
+    observer.observe(section);
     return () => observer.disconnect();
   }, []);
 
@@ -335,8 +394,8 @@ export default function Home() {
             <p className="slide-p">{activeSlide.p}</p>
             <div className="hero-trust-row">
               <div className="hero-trust-pill">Established 2012</div>
-              <div className="hero-trust-pill">600+ Students</div>
-              <div className="hero-trust-pill">Bus Routes Available</div>
+              <div className="hero-trust-pill">650+ Students</div>
+              <div className="hero-trust-pill">28 Classrooms</div>
             </div>
             <div className="hero-btns">
               <a href={activeSlide.btn1.href} className="btn-solid">{activeSlide.btn1.label}</a>
@@ -390,9 +449,9 @@ export default function Home() {
       {/* STATS STRIP */}
       <div className="stats-strip">
         <div className="stats-row">
-          <div className="st sr"><div className="st-num">600<span>+</span></div><div className="st-lbl">Students Enrolled</div></div>
-          <div className="st sr d1"><div className="st-num">50<span>+</span></div><div className="st-lbl">Dedicated Educators</div></div>
-          <div className="st sr d2"><div className="st-num">10</div><div className="st-lbl">Classes (Nursery to 10th)</div></div>
+          <div className="st sr"><div className="st-num">650<span>+</span></div><div className="st-lbl">Students Enrolled</div></div>
+          <div className="st sr d1"><div className="st-num">40<span>+</span></div><div className="st-lbl">Dedicated Educators</div></div>
+          <div className="st sr d2"><div className="st-num">28</div><div className="st-lbl">Classrooms</div></div>
           <div className="st sr d3"><div className="st-num">100<span>%</span></div><div className="st-lbl">Holistic Education</div></div>
         </div>
       </div>
@@ -491,62 +550,47 @@ export default function Home() {
       </section>
 
       {/* PROGRAMMES */}
-      <section className="section section-bg" id="programmes">
+      <section className="section" id="programmes">
         <div className="wrap">
           <div className="programme-hero sr">
             <div className="programme-hero-copy">
-              <div className="eyebrow">Our Programmes</div>
-              <h2 className="sec-title" style={{ maxWidth: '620px', marginBottom: '16px' }}>
-                All-Round Development
-                <br />
-                for <em>Every Student</em>
+              <div className="eyebrow eyebrow-c">Our Programmes</div>
+              <h2 className="sec-title">
+                All-Round Development for <em>Every Student</em>
               </h2>
-              <p className="sec-body" style={{ maxWidth: '620px' }}>
-                Beyond academics, Nalanda builds curiosity, confidence, discipline, communication, and a strong sense of purpose through a more complete school experience.
+              <p className="sec-body">
+                Beyond academics - Nalanda invests in every dimension of a child&apos;s growth.
               </p>
-            </div>
-            <div className="programme-hero-metrics sr d1">
-              {programmeMetrics.map((metric) => (
-                <div key={metric.label} className="programme-metric-card">
-                  <span>{metric.label}</span>
-                  <strong>{metric.value}</strong>
-                </div>
-              ))}
             </div>
           </div>
           <div className="programme-showcase">
-            <div className="programme-tabs sr">
-              {spotlightProgrammes.map((programme, i) => (
-                <button
-                  key={programme.no}
-                  type="button"
-                  className={`programme-tab${activeProgramme === i ? ' active' : ''}`}
-                  onClick={() => setActiveProgramme(i)}
-                  onMouseEnter={() => setActiveProgramme(i)}
-                >
-                  <span className="programme-tab-no">{programme.no}</span>
-                  <span className="programme-tab-copy">
-                    <span className="programme-tab-kicker">{programme.kicker}</span>
-                    <span className="programme-tab-title">{programme.title}</span>
-                  </span>
-                </button>
+            <div className="programme-cards-grid sr">
+              {spotlightProgrammes.map((programme) => (
+                <article key={programme.no} className="programme-card">
+                  <div className="programme-card-image">
+                    {programme.carouselImgs ? (
+                      <div className="programme-card-carousel">
+                        {programme.carouselImgs.map((image, index) => (
+                          <img
+                            key={image.src}
+                            className={`programme-card-carousel-image${programmeCarouselIndex === index ? ' is-active' : ''}`}
+                            src={image.src}
+                            alt={image.alt}
+                          />
+                        ))}
+                      </div>
+                    ) : (
+                      <img src={programme.img} alt={programme.imgAlt || programme.title} />
+                    )}
+                  </div>
+                  <div className="programme-card-body">
+                    <div className="prog-tag">{programme.kicker}</div>
+                    <h3 className="programme-card-title">{programme.title}</h3>
+                    <p className="programme-card-desc">{programme.desc}</p>
+                    <a href="#contact" className="readmore programme-card-link">Learn More</a>
+                  </div>
+                </article>
               ))}
-            </div>
-            <div className="programme-spotlight sr d1">
-              <div className="programme-spotlight-image">
-                <img src={spotlightProgrammes[activeProgramme].img} alt={spotlightProgrammes[activeProgramme].title} />
-              </div>
-              <div className="programme-spotlight-body">
-                <div className="prog-tag">{spotlightProgrammes[activeProgramme].kicker}</div>
-                <div className="programme-spotlight-title">{spotlightProgrammes[activeProgramme].title}</div>
-                <div className="prog-desc">{spotlightProgrammes[activeProgramme].desc}</div>
-                <div className="programme-spotlight-points">
-                  {spotlightProgrammes[activeProgramme].bullets.map((bullet) => (
-                    <div key={bullet} className="programme-point">{bullet}</div>
-                  ))}
-                </div>
-                <a href="#contact" className="readmore">Book a Campus Visit</a>
-              </div>
             </div>
           </div>
         </div>
@@ -581,18 +625,18 @@ export default function Home() {
           <div className="feature-ref-head sr">
             <div className="feature-ref-copy">
               <div className="eyebrow">Why Families Choose Nalanda</div>
-              <h2 className="sec-title" style={{ maxWidth: '620px', marginBottom: '14px' }}>
-                A School Journey Built on
+              <h2 className="sec-title feature-ref-title">
+                A Bright Start Built on
                 <br />
-                <em>Trust, Care, and Strong Foundations</em>
+                <em>Care, Confidence, and Strong Learning</em>
               </h2>
-              <p className="sec-body" style={{ maxWidth: '620px' }}>
-                Families choose Nalanda because children are guided with personal attention, strong teaching, safe campus culture, and opportunities that build confidence inside and outside the classroom.
+              <p className="sec-body feature-ref-body">
+                Nalanda gives children personal attention, strong teaching, and a safe, encouraging environment to grow.
               </p>
               <div className="feature-ref-tags">
                 <span className="feature-ref-tag">Personal Attention</span>
                 <span className="feature-ref-tag">Safe Campus</span>
-                <span className="feature-ref-tag">All-Round Growth</span>
+                <span className="feature-ref-tag">Confident Growth</span>
               </div>
             </div>
           </div>
@@ -732,17 +776,20 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="section admission-journey-sec">
+      <section ref={journeySectionRef} className="section admission-journey-sec">
         <div className="wrap">
           <div className="journey-head sr">
             <div className="eyebrow eyebrow-c">Admissions Journey</div>
-            <h2 className="sec-title" style={{ textAlign: 'center', maxWidth: '680px', margin: '0 auto 14px' }}>A Smooth Path from First Enquiry<br /><em>to First Day at School</em></h2>
-            <p className="sec-body" style={{ margin: '0 auto', textAlign: 'center', maxWidth: '680px' }}>From your first message to your child&apos;s first day, our admissions process is simple, welcoming, and easy for families to understand.</p>
+            <h2 className="sec-title journey-title-main">A Simple Path from Enquiry<br /><em>to First Day</em></h2>
+            <p className="sec-body journey-body">Clear, friendly steps that help families move forward with ease.</p>
           </div>
           <div className="journey-grid">
             {admissionSteps.map((step, i) => (
-              <article key={step.no} className={`journey-card sr d${i % 4}`}>
-                <div className="journey-no">{step.no}</div>
+              <article key={step.no} className={`journey-card sr d${i % 4} journey-card-reveal${journeyRevealCount > i ? ' revealed' : ''}`}>
+                <div className="journey-step-top">
+                  <div className="journey-no">{step.no}</div>
+                  <div className="journey-step-line" />
+                </div>
                 <h3 className="journey-title">{step.title}</h3>
                 <p className="journey-desc">{step.desc}</p>
               </article>
@@ -873,7 +920,7 @@ export default function Home() {
         </div>
         <div className="footer-bot">
           <p>Copyright {currentYear} Nalanda High School. All rights reserved.</p>
-          <p>600+ Students - Nursery to 10th Class - Andhra Pradesh, India</p>
+          <p>650+ Students - 40+ Educators - 28 Classrooms</p>
         </div>
       </footer>
 
@@ -884,5 +931,3 @@ export default function Home() {
     </>
   );
 }
-
-
