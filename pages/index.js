@@ -640,11 +640,11 @@ export default function Home() {
               </div>
             </div>
           </div>
-          <div className="pillar-grid">
+          <div className="pillar-grid feature-ref-tags">
             {learningPillars.map((pillar, i) => (
-              <article key={pillar.no} className={`pillar-card sr ${i % 2 ? 'd1' : ''}`}>
-                <h3 className="pillar-title">{pillar.title}</h3>
-              </article>
+              <span key={pillar.no} className={`feature-ref-tag sr ${i % 2 ? 'd1' : ''}`}>
+                {pillar.title}
+              </span>
             ))}
           </div>
         </div>
