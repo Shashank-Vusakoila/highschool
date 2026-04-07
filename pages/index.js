@@ -177,7 +177,7 @@ export default function Home() {
   const campusMoments = [
     { title: 'Learning Spaces', img: '/images/hero1.jpg' },
     { title: 'Campus Life', img: '/images/campus-life.jpg' },
-    { title: 'Student Energy', img: '/images/student-energy.jpg' },
+    { title: 'Digital Learning', img: '/images/digital-learning-classroom.jpeg' },
     { title: 'Community Feel', img: '/images/community-feel.jpg' },
   ];
 
@@ -643,16 +643,7 @@ export default function Home() {
           <div className="pillar-grid">
             {learningPillars.map((pillar, i) => (
               <article key={pillar.no} className={`pillar-card sr ${i % 2 ? 'd1' : ''}`}>
-                <div className="pillar-top">
-                  <span className="pillar-no">{pillar.no}</span>
-                  <h3 className="pillar-title">{pillar.title}</h3>
-                </div>
-                <p className="pillar-desc">{pillar.desc}</p>
-                <div className="pillar-points">
-                  {pillar.points.map((point) => (
-                    <span key={point} className="pillar-point">{point}</span>
-                  ))}
-                </div>
+                <h3 className="pillar-title">{pillar.title}</h3>
               </article>
             ))}
           </div>
