@@ -134,21 +134,9 @@ export default function Home() {
     },
     {
       no: '02',
-      title: 'Future-Ready Thinking',
-      desc: 'Children learn to think, speak, and solve problems with growing confidence.',
-      points: ['Critical thinking', 'Confident communication', 'Problem-solving'],
-    },
-    {
-      no: '03',
       title: 'Whole-Child Growth',
       desc: 'Academics, sports, arts, and values come together for balanced development.',
       points: ['Sports and fitness', 'Arts and creativity', 'Values and discipline'],
-    },
-    {
-      no: '04',
-      title: 'Caring School Community',
-      desc: 'A caring campus and supportive teachers help every child feel safe and encouraged.',
-      points: ['Dedicated teachers', 'Safe campus', 'Parent support'],
     },
   ];
 
@@ -158,12 +146,14 @@ export default function Home() {
       initials: 'IK',
       role: 'Founder',
       desc: 'Committed to building a school environment where discipline, care, and quality education grow together.',
+      photo: '',
     },
     {
       name: 'Bhasker Rao Gupta',
       initials: 'BG',
       role: 'Founder',
       desc: 'Focused on creating a strong educational foundation that supports every child with confidence and opportunity.',
+      photo: '',
     },
   ];
 
@@ -665,12 +655,30 @@ export default function Home() {
           </div>
           <div className="founders-grid">
             {founders.map((founder, i) => (
-              <article key={founder.name} className={`founder-card sr d${i + 1}`}>
-                <div className="founder-avatar">{founder.initials}</div>
-                <div className="founder-role-tag">{founder.role}</div>
-                <h3 className="founder-name">{founder.name}</h3>
-                <div className="founder-divider" />
-                <p className="journey-desc" style={{ maxWidth: '420px', margin: '0 auto' }}>{founder.desc}</p>
+              <article
+                key={founder.name}
+                className={`founder-card sr d${i + 1}`}
+                tabIndex="0"
+                aria-label={`${founder.name}. Tap or hover to view founder information.`}
+              >
+                <div className="founder-card-inner">
+                  <div className="founder-face founder-front">
+                    <div className="founder-avatar founder-photo-frame">
+                      {founder.photo ? (
+                        <img src={founder.photo} alt={founder.name} className="founder-photo" />
+                      ) : (
+                        <span>{founder.initials}</span>
+                      )}
+                    </div>
+                    <h3 className="founder-name">{founder.name}</h3>
+                  </div>
+                  <div className="founder-face founder-back">
+                    <div className="founder-role-tag">{founder.role}</div>
+                    <h3 className="founder-name founder-name-back">{founder.name}</h3>
+                    <div className="founder-divider" />
+                    <p className="journey-desc" style={{ maxWidth: '420px', margin: '0 auto' }}>{founder.desc}</p>
+                  </div>
+                </div>
               </article>
             ))}
           </div>
